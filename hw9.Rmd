@@ -52,8 +52,7 @@ im2 <- im %>% gather(key = time, value = return, c(12, 14, 16, 18, 20)) %>%
 im.neat = left_join(im1, im2, by = c("Name.Alias", "time"))
 view(im.neat)
 
-# Fact checked as Iron Man dies once in Endgame.
-
 
 ```
 
+The statement that I chose is the one that states that Iron man faked his death, took a break, then returned. This is reflected in the im dataframe showing that Iron Man had one death (fact checked with his death in Endgame) and one return. 
