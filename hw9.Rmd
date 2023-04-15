@@ -1,0 +1,59 @@
+---
+title: "hw9"
+author: "Taran Panduranga"
+date: "2023-04-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyverse)
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+av <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv", stringsAsFactors = FALSE)
+head(av)
+
+
+av1 <- av %>% gather(key = time, value = death, c(11, 13, 15, 17, 19)) %>%
+  select(Name.Alias, time, death) %>%
+  mutate(time = parse_number(time))
+
+av2 <- av %>% gather(key = time, value = return, c(12, 14, 16, 18, 20)) %>%
+  select(Name.Alias, time, return) %>%
+  mutate(time = parse_number(time))
+
+av.neat = left_join(av1, av2, by = c("Name.Alias", "time"))
+
+View(av.neat)
+
+
+
+
+im <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv", stringsAsFactors = FALSE)
+head(im)
+
+im = im %>% filter(Name.Alias == 'Anthony Edward "Tony" Stark')
+im1 <- im %>% gather(key = time, value = death, c(11, 13, 15, 17, 19)) %>%
+  select(Name.Alias, time, death) %>%
+  mutate(time = parse_number(time))
+
+im2 <- im %>% gather(key = time, value = return, c(12, 14, 16, 18, 20)) %>%
+  select(Name.Alias, time, return) %>%
+  mutate(time = parse_number(time))
+im.neat = left_join(im1, im2, by = c("Name.Alias", "time"))
+view(im.neat)
+
+# Fact checked as Iron Man dies once in Endgame.
+
+
+```
+
